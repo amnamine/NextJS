@@ -18,4 +18,99 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.7s, color 0.7s;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .animate-slide-down {
+    animation: slideDown 1s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  .animate-zoom-in {
+    animation: zoomIn 0.8s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .animate-bounce-in {
+    animation: bounceIn 1s cubic-bezier(0.68,-0.55,0.27,1.55) both;
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite alternate;
+  }
+  .animate-tilt {
+    animation: tilt 1.5s ease-in-out infinite alternate;
+  }
+  .animate-gradient-bg {
+    background-size: 200% 200%;
+    animation: gradientBG 6s ease-in-out infinite;
+  }
+  .animate-pulse-strong {
+    animation: pulseStrong 1.2s cubic-bezier(0.4,0,0.2,1) infinite alternate;
+  }
+  .animate-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  .animate-ripple::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow {
+  from { box-shadow: 0 0 8px 0 #a78bfa, 0 0 0px 0 #f472b6; }
+  to { box-shadow: 0 0 24px 4px #a78bfa, 0 0 16px 2px #f472b6; }
+}
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-16px); }
+}
+@keyframes tilt {
+  from { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+@keyframes gradientBG {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes pulseStrong {
+  from { box-shadow: 0 0 0 0 rgba(168,139,250,0.7); }
+  to { box-shadow: 0 0 24px 8px rgba(244,114,182,0.5); }
+}
+@keyframes ripple {
+  to {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
 }
